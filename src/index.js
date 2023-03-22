@@ -23,9 +23,16 @@ WebFont.load({
 const Index = () => {
   return (
     <>
+      {/**
+       * Helmet nos ayuda a colocar nuestros favicons y asignar un nombre a nuestro
+       * titulo de cada pagina para mostrarlo
+       */}
       <Helmet>
         <link rel="shortcut icon" href={favicon} type="image/x-icon" />
       </Helmet>
+      {/**
+       * Definimos las rutas de nuestra aplicacion
+       */}
       <BrowserRouter>
         <Contenedor>
           <Routes>
