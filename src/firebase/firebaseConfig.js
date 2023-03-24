@@ -20,7 +20,7 @@ const app = initializeApp(firebaseConfig);
 //referencia para el servicio de autenticacion
 const auth = getAuth();
 //referencia para el servicio de firestore
-const db = getFirestore();
+const db = getFirestore(app);
 
 /**
  * ahora desde cualquier parte de nuestra app que necesitemos la base de datos

@@ -9,6 +9,9 @@ import {
 import { ContenedorHeader, Header, Titulo } from "../elmentos/Header";
 import { ReactComponent as SvgLogin } from "./../imagenes/registro.svg";
 import styled from "styled-components";
+import { auth } from "../firebase/firebaseConfig";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const Svg = styled(SvgLogin)`
   width: 100%;
@@ -20,7 +23,12 @@ const RegistroUsuarios = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
-
+  /**
+   * para navegar en nuestra app hacemos uso de react-router-dom con su
+   * hook useNavigate al que asignaremos al variable navigate para que
+   * recibar las rutas a las que nos queremos mover
+   */
+  const navigate = useNavigate();
   const handleChange = (e) => {
     console.log(e.target.name);
     switch (e.target.name) {
@@ -38,7 +46,7 @@ const RegistroUsuarios = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(email, password, password2);
 
@@ -63,6 +71,47 @@ const RegistroUsuarios = () => {
 
     //Si todo esta bien registraremos un usuario
     console.log("registramos usuario");
+    /**
+     * Estamos usando el servicio de autenticacion de firebase V9
+     * con el metodo createUserWithEmailAndPassword(auth,email,password) el cual
+     * recibe 3 parametros (correo,contraseña) para regitrar nuevo usuario en firebase
+     */
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      /**
+       * navigate es el nombre que le asiganos cuando asiganamos en el useNaviage
+       * recibe un string con el nombre la ruta que definimos en el Route en index.js
+       * y navigate nos movere a esa ruta cuando se ejecute
+       */
+      navigate("/");
+    } catch (error) {
+      /**
+       * obtenemos los nombres de los mensajes de error de firebase
+       */
+      console.log(error.code);
+      let mensaje;
+      /**
+       * este switch evalua el mensaje de error que ocurrio y nos devolver un
+       * mensaje personalizado para poder mostrar al usaurio
+       */
+      switch (error.code) {
+        case "auth/weak-password":
+          mensaje = "La contraseña tiene que ser de al menos 6 caracteres.";
+          break;
+        case "auth/email-already-in-use":
+          mensaje =
+            "Ya existe una cuenta con el correo electrónico proporcionado.";
+          break;
+        case "auth/invalid-email":
+          mensaje = "El correo electrónico no es válido.";
+          break;
+        default:
+          mensaje = "Hubo un error al intentar crear la cuenta.";
+          break;
+      }
+
+      console.log(mensaje);
+    }
   };
 
   return (
@@ -96,7 +145,7 @@ const RegistroUsuarios = () => {
           onChange={handleChange}
         />
         <Input
-          type="passowrd"
+          type="password"
           name="password2"
           placeholder="Confirmar Contraseña"
           value={password2}
