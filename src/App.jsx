@@ -7,6 +7,7 @@ import {
   Header,
   Titulo,
 } from "./elmentos/Header";
+import { BotonCerrarSesion } from "./elmentos/BotonCerrarSesion";
 
 const App = () => {
   return (
@@ -24,7 +25,7 @@ const App = () => {
              */}
             <Boton to="/categorias">Categorias</Boton>
             <Boton to="/lista">Lista Categoria</Boton>
-            <Boton to="/">X</Boton>
+            <BotonCerrarSesion />
           </ContenedorBotones>
         </ContenedorHeader>
       </Header>

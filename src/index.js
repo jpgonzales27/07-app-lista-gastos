@@ -14,6 +14,7 @@ import { Helmet } from "react-helmet";
 import favicon from "./imagenes/logo.png";
 import Fondo from "./elmentos/Fondo";
 import { AuthProvider } from "./contextos/AuthContext";
+import { RutaPrivada } from "./componentes/RutaPrivada";
 
 WebFont.load({
   google: {
@@ -43,13 +44,55 @@ const Index = () => {
         <BrowserRouter>
           <Contenedor>
             <Routes>
-              <Route path="*" element={<App />} />
-              <Route path="/" element={<App />} />
               <Route path="/iniciar-sesion" element={<InicioSesion />} />
               <Route path="/crear-cuenta" element={<RegistroUsuarios />} />
-              <Route path="/categorias" element={<GastoCategoria />} />
-              <Route path="/lista" element={<ListaGastos />} />
-              <Route path="/editar/:id" element={<EditarGasto />} />
+              {/**
+               * Cremoas un componente RutaPrivada que se encarga de verficar si el usuario
+               * inicio si es asi podemos acceder a la ruta
+               */}
+              <Route
+                path="/categorias"
+                element={
+                  <RutaPrivada>
+                    <GastoCategoria />
+                  </RutaPrivada>
+                }
+              />
+
+              <Route
+                path="/lista"
+                element={
+                  <RutaPrivada>
+                    <ListaGastos />
+                  </RutaPrivada>
+                }
+              />
+              <Route
+                path="/editar/:id"
+                element={
+                  <RutaPrivada>
+                    <EditarGasto />
+                  </RutaPrivada>
+                }
+              />
+
+              <Route
+                path="/"
+                element={
+                  <RutaPrivada>
+                    <App />
+                  </RutaPrivada>
+                }
+              />
+
+              <Route
+                path="*"
+                element={
+                  <RutaPrivada>
+                    <App />
+                  </RutaPrivada>
+                }
+              />
             </Routes>
           </Contenedor>
         </BrowserRouter>
