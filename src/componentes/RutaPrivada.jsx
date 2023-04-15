@@ -10,7 +10,7 @@ export const RutaPrivada = ({ children }) => {
   const { usuario } = useAuth();
 
   /**
-   * se encarga de verficar si el usuario inicio si es asi podemos acceder a la ruta
+   * se encarga de verficar si el usuario inicio sesion si es asi podemos acceder a la ruta
    * caso contrario lo mandaremos a la pagina para que inicie su session
    */
   if (usuario) {

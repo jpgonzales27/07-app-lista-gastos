@@ -8,6 +8,7 @@ import {
   Titulo,
 } from "./elmentos/Header";
 import { BotonCerrarSesion } from "./elmentos/BotonCerrarSesion";
+import { FormularioGasto } from "./componentes/FormularioGasto";
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
           </ContenedorBotones>
         </ContenedorHeader>
       </Header>
+      <FormularioGasto />
     </>
   );
 };

@@ -21,7 +21,7 @@ const AuthProvider = ({ children }) => {
 
   /**
    * Efecto para ejecutar la comprobacion si el
-   * usuario ya esta registrado uun sola vez
+   * usuario ya esta registrado una sola vez
    */
   useEffect(() => {
     //Comprobamos si hay el usaurio
@@ -35,7 +35,7 @@ const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider value={{ usuario: usuario }}>
       {/* Solamente retornamos los elementos hijos cuando no este cargando.
-	  De esta forma nos aseguramos de no cargar el resto de la app hasta que
+	    De esta forma nos aseguramos de no cargar el resto de la app hasta que
       el usuario haya sido establecido.
 
       Si no hacemos esto al refrescar la pagina el componente children
