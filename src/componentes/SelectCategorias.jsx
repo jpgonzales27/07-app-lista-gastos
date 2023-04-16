@@ -8,14 +8,14 @@ export const SelectCategorias = ({ categoria, setCategoria }) => {
   const [mostrarSelect, setMostrarSelect] = useState(false);
 
   const categorias = [
-    { id: "comida", texto: "Comida" },
-    { id: "cuentas y pagos", texto: "Cuentas y pagos" },
-    { id: "hogar", texto: "Hogar" },
-    { id: "transporte", texto: "Transporte" },
-    { id: "ropa", texto: "Ropa" },
-    { id: "salud e higiene", texto: "Salud e Higiene" },
-    { id: "compras", texto: "Compras" },
-    { id: "diversion", texto: "Diversion" },
+    { id: 1, nombre: "comida", texto: "Comida" },
+    { id: 2, nombre: "cuentas y pagos", texto: "Cuentas y pagos" },
+    { id: 3, nombre: "hogar", texto: "Hogar" },
+    { id: 4, nombre: "transporte", texto: "Transporte" },
+    { id: 5, nombre: "ropa", texto: "Ropa" },
+    { id: 6, nombre: "salud e higiene", texto: "Salud e Higiene" },
+    { id: 7, nombre: "compras", texto: "Compras" },
+    { id: 8, nombre: "diversion", texto: "Diversion" },
   ];
 
   const handleClick = (e) => {
@@ -40,15 +40,15 @@ export const SelectCategorias = ({ categoria, setCategoria }) => {
       </OpcionSeleccionada>
       {mostrarSelect && (
         <Opciones>
-          {categorias.map((categori) => {
+          {categorias.map((categoria) => {
             return (
               <Opcion
-                key={categori.id}
-                data-valor={categori.id}
+                key={categoria.id}
+                data-valor={categoria.nombre}
                 onClick={handleClick}
               >
-                <IconoCategoria id={categori.id} />
-                {categori.texto}
+                <IconoCategoria nombre={categoria.nombre} />
+                {categoria.texto}
               </Opcion>
             );
           })}

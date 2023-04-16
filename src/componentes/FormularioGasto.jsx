@@ -9,11 +9,13 @@ import {
 import { Boton } from "../elmentos/Boton";
 import { ReactComponent as IconoPlus } from "./../imagenes/plus.svg";
 import { SelectCategorias } from "./SelectCategorias";
+import { DatePicker } from "./DatePicker";
 
 export const FormularioGasto = () => {
   const [inputDescripcion, setInputDescripcion] = useState("");
   const [inputCantidad, setInputCantidad] = useState("");
   const [categoria, setCategoria] = useState("hogar");
+  const [fecha, setFecha] = useState(new Date());
 
   const handleChange = (e) => {
     if (e.target.name === "descripcion") {
@@ -31,7 +33,8 @@ export const FormularioGasto = () => {
     <Formulario>
       <ContenedorFiltros>
         <SelectCategorias categoria={categoria} setCategoria={setCategoria} />
-        <p>Date Picker</p>
+        {/* <p>Date Picker</p> */}
+        <DatePicker fecha={fecha} setFecha={setFecha} />
       </ContenedorFiltros>
       <div>
         <Input
